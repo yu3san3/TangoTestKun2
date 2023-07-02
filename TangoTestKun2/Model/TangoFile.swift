@@ -34,4 +34,5 @@ extension TangoFile {
     整列、調整=alignment
     半径=radius
     """.trimmingCharacters(in: .whitespaces) //両端の空白を削除
+    static let newFileRawText = "りんご=apple"
 }

@@ -27,27 +27,35 @@ struct TangoTestView: View {
 
 private extension TangoTestView {
     var testContentList: some View {
-        List(0..<tangoData.endIndex, id: \.self) { index in
-            HStack {
-                Image(systemName: "\(index+1).circle")
-                switch testType {
-                case .jp:
-                    Text(tangoData[index].jp)
-                    if isCheckingAnswers {
-                        Spacer()
-                        Text(tangoData[index].en)
-                    }
-                case .en:
-                    Text(tangoData[index].en)
-                    if isCheckingAnswers {
-                        Spacer()
-                        Text(tangoData[index].jp)
-                    }
+        List {
+            Section {
+                ForEach(0..<tangoData.endIndex, id: \.self) { index in
+                    makeListItem(index: index)
                 }
-
             }
+            .listSectionSeparator(.hidden) //上下のリスト区切り線を消す
         }
         .listStyle(.plain)
+    }
+
+    func makeListItem(index: Int) -> some View {
+        HStack {
+            Image(systemName: "\(index+1).circle")
+            switch testType {
+            case .jp:
+                Text(tangoData[index].jp)
+                if isCheckingAnswers {
+                    Spacer()
+                    Text(tangoData[index].en)
+                }
+            case .en:
+                Text(tangoData[index].en)
+                if isCheckingAnswers {
+                    Spacer()
+                    Text(tangoData[index].jp)
+                }
+            }
+        }
     }
 
     var bottomButton: some View {
