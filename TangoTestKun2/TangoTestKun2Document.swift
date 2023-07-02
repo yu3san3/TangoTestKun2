@@ -17,7 +17,7 @@ extension UTType {
 struct TangoTestKun2Document: FileDocument {
     var text: String
 
-    init(text: String = "Hello, world!") {
+    init(text: String = "Hello, world!=こんにちは世界！") {
         self.text = text
     }
 

@@ -54,13 +54,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		EB5DAEB72A51C71100E15896 /* New Group */ = {
+		EB5DAEB72A51C71100E15896 /* Other */ = {
 			isa = PBXGroup;
 			children = (
 				EB5DAEB32A51C65C00E15896 /* TestType.swift */,
 				EB5DAEB52A51C70300E15896 /* TangoParser.swift */,
 			);
-			path = "New Group";
+			path = Other;
 			sourceTree = "<group>";
 		};
 		EB5DAEB82A51C94400E15896 /* View */ = {
@@ -96,7 +96,7 @@
 				EB6F5C092A51BE9A0010743D /* TangoTestKun2Document.swift */,
 				EB5DAEB82A51C94400E15896 /* View */,
 				EB5DAEB02A51C60000E15896 /* Model */,
-				EB5DAEB72A51C71100E15896 /* New Group */,
+				EB5DAEB72A51C71100E15896 /* Other */,
 				EB6F5C0D2A51BE9F0010743D /* Assets.xcassets */,
 				EB6F5C0F2A51BE9F0010743D /* Info.plist */,
 				EB6F5C102A51BE9F0010743D /* TangoTestKun2.entitlements */,

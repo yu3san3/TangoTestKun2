@@ -16,7 +16,6 @@ struct ContentView: View {
 
     @State private var isShowingVersionAlert = false
     @State private var isCheckingAnswers = false
-    @State private var isImporting = false
     @State private var isShowingFileEditView = false
 
     var body: some View {
@@ -43,6 +42,18 @@ struct ContentView: View {
         .navigationTitle("単語テストくん")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    isShowingVersionAlert = true
+                }) {
+                    Label("情報", systemImage: "info.circle")
+                }
+                .alert("単語テストくん", isPresented: $isShowingVersionAlert) {
+                    Button("OK") {}
+                } message: {
+                    Text("\(appVersion) (\(appBuildNum))")
+                }
+            }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
                     isShowingFileEditView = true
