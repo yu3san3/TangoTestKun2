@@ -8,12 +8,6 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-extension UTType {
-    static var exampleText: UTType {
-        UTType(importedAs: "com.example.plain-text")
-    }
-}
-
 struct TangoTestKun2Document: FileDocument {
     var text: String
 
