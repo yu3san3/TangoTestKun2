@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FileEditView: View {
-    @Binding var nowEditingFile: TangoTestKun2Document
+    @Binding var nowEditingFile: String
     @State private var textEditorContent: String
     var onCompletion: (String) -> Void
 
@@ -17,9 +17,9 @@ struct FileEditView: View {
 
     @Environment(\.dismiss) var dismiss
 
-    init(nowEditingFile: Binding<TangoTestKun2Document>, onCompletion: @escaping (String) -> Void) {
+    init(nowEditingFile: Binding<String>, onCompletion: @escaping (String) -> Void) {
         self._nowEditingFile = nowEditingFile
-        self._textEditorContent = State(initialValue: nowEditingFile.text.wrappedValue)
+        self._textEditorContent = State(initialValue: nowEditingFile.wrappedValue)
         self.onCompletion = onCompletion
     }
 
@@ -78,7 +78,7 @@ private extension FileEditView {
     }
 
     func hasChanges() -> Bool {
-        if textEditorContent != nowEditingFile.text {
+        if textEditorContent != nowEditingFile {
             return true
         }
         return false
@@ -96,7 +96,7 @@ private extension FileEditView {
 
 struct DocEditView_Previews: PreviewProvider {
     static var previews: some View {
-        FileEditView(nowEditingFile: .constant(TangoTestKun2Document())) { _ in
+        FileEditView(nowEditingFile: .constant(TangoFile.mockRawText)) { _ in
             print("completion")
         }
     }

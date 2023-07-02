@@ -12,7 +12,12 @@ let appBuildNum = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
 
 struct ContentView: View {
 
-    @Binding var tangoFile: TangoTestKun2Document
+    @StateObject var tangoFile = TangoFile()
+    @Binding var tangoDocument: TangoTestKun2Document {
+        didSet {
+            tangoFile.rawText = tangoDocument.text
+        }
+    }
 
     @State private var isShowingVersionAlert = false
     @State private var isCheckingAnswers = false
@@ -21,7 +26,7 @@ struct ContentView: View {
     var body: some View {
         TabView {
             TangoTestView(
-                tangoData: .constant(TangoParser.parse(tangoFile.text)),
+                tangoData: $tangoFile.tangoData,
                 testType: .jp,
                 isCheckingAnswers: $isCheckingAnswers
             )
@@ -30,7 +35,7 @@ struct ContentView: View {
                 Text("日本語")
             }
             TangoTestView(
-                tangoData: .constant(TangoParser.parse(tangoFile.text)),
+                tangoData: $tangoFile.tangoData,
                 testType: .en,
                 isCheckingAnswers: $isCheckingAnswers
             )
@@ -38,6 +43,9 @@ struct ContentView: View {
                 Image(systemName: "e.circle.fill")
                 Text("英語")
             }
+        }
+        .onAppear {
+            tangoFile.rawText = tangoDocument.text
         }
         .navigationTitle("単語テストくん")
         .navigationBarTitleDisplayMode(.inline)
@@ -61,8 +69,8 @@ struct ContentView: View {
                     Label("編集", systemImage: "doc.text")
                 }
                 .sheet(isPresented: $isShowingFileEditView) {
-                    FileEditView(nowEditingFile: .constant(tangoFile)) { text in
-                        tangoFile.text = text
+                    FileEditView(nowEditingFile: $tangoFile.rawText) { text in
+                        tangoDocument.text = text
                     }
                 }
             }
@@ -72,6 +80,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(tangoFile: .constant(TangoTestKun2Document()))
+        ContentView(tangoDocument: .constant(TangoTestKun2Document()))
     }
 }

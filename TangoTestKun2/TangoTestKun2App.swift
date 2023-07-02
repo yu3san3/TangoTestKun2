@@ -11,7 +11,7 @@ import SwiftUI
 struct TangoTestKun2App: App {
     var body: some Scene {
         DocumentGroup(newDocument: TangoTestKun2Document()) { file in
-            ContentView(tangoFile: file.$document)
+            ContentView(tangoDocument: file.$document)
         }
     }
 }
