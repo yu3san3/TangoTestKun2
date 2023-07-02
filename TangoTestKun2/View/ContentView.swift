@@ -69,7 +69,7 @@ struct ContentView: View {
                     Label("編集", systemImage: "doc.text")
                 }
                 .sheet(isPresented: $isShowingFileEditView) {
-                    FileEditView(nowEditingFile: $tangoFile.rawText) { text in
+                    FileEditView(rawText: $tangoFile.rawText) { text in
                         tangoDocument.text = text
                     }
                 }
