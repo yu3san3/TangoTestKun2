@@ -46,9 +46,14 @@ struct ContentView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
                     isShowingFileEditView = true
-                }, label: {
+                }) {
                     Label("編集", systemImage: "doc.text")
-                })
+                }
+                .sheet(isPresented: $isShowingFileEditView) {
+                    FileEditView(nowEditingFile: .constant(tangoFile)) { text in
+                        tangoFile.text = text
+                    }
+                }
             }
         }
     }
