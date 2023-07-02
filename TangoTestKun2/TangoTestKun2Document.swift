@@ -21,8 +21,9 @@ struct TangoTestKun2Document: FileDocument {
         self.text = text
     }
 
-    static var readableContentTypes: [UTType] { [.exampleText] }
+    static var readableContentTypes: [UTType] { [.plainText] }
 
+    //読み込み
     init(configuration: ReadConfiguration) throws {
         guard let data = configuration.file.regularFileContents,
               let string = String(data: data, encoding: .utf8)
@@ -31,9 +32,26 @@ struct TangoTestKun2Document: FileDocument {
         }
         text = string
     }
-    
+
+    //書き込み
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
         let data = text.data(using: .utf8)!
         return .init(regularFileWithContents: data)
     }
+}
+
+extension TangoTestKun2Document {
+    static let mockTangoData = TangoParser.parse(mockRawText)
+    static let mockRawText = """
+    起動する、開始する=launch
+    意図=intent
+    適格である=eligible
+    束=bundle
+    浮く=float
+    委任する、代表=delegate
+    制限、制約=restriction
+    登録する、記録=register
+    整列、調整=alignment
+    半径=radius
+    """.trimmingCharacters(in: .whitespaces) //両端の空白を削除
 }

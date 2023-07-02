@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB5DAEAF2A51C5E200E15896 /* TangoTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5DAEAE2A51C5E200E15896 /* TangoTestView.swift */; };
+		EB5DAEB22A51C64700E15896 /* TangoDataElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5DAEB12A51C64600E15896 /* TangoDataElement.swift */; };
+		EB5DAEB42A51C65C00E15896 /* TestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5DAEB32A51C65C00E15896 /* TestType.swift */; };
+		EB5DAEB62A51C70300E15896 /* TangoParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5DAEB52A51C70300E15896 /* TangoParser.swift */; };
 		EB6F5C082A51BE9A0010743D /* TangoTestKun2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F5C072A51BE9A0010743D /* TangoTestKun2App.swift */; };
 		EB6F5C0A2A51BE9A0010743D /* TangoTestKun2Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F5C092A51BE9A0010743D /* TangoTestKun2Document.swift */; };
 		EB6F5C0C2A51BE9A0010743D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F5C0B2A51BE9A0010743D /* ContentView.swift */; };
@@ -15,6 +19,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB5DAEAE2A51C5E200E15896 /* TangoTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangoTestView.swift; sourceTree = "<group>"; };
+		EB5DAEB12A51C64600E15896 /* TangoDataElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangoDataElement.swift; sourceTree = "<group>"; };
+		EB5DAEB32A51C65C00E15896 /* TestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestType.swift; sourceTree = "<group>"; };
+		EB5DAEB52A51C70300E15896 /* TangoParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangoParser.swift; sourceTree = "<group>"; };
 		EB6F5C042A51BE9A0010743D /* TangoTestKun2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TangoTestKun2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB6F5C072A51BE9A0010743D /* TangoTestKun2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangoTestKun2App.swift; sourceTree = "<group>"; };
 		EB6F5C092A51BE9A0010743D /* TangoTestKun2Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangoTestKun2Document.swift; sourceTree = "<group>"; };
@@ -36,6 +44,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EB5DAEB02A51C60000E15896 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EB5DAEB12A51C64600E15896 /* TangoDataElement.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EB5DAEB72A51C71100E15896 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				EB5DAEB32A51C65C00E15896 /* TestType.swift */,
+				EB5DAEB52A51C70300E15896 /* TangoParser.swift */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		EB5DAEB82A51C94400E15896 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EB6F5C0B2A51BE9A0010743D /* ContentView.swift */,
+				EB5DAEAE2A51C5E200E15896 /* TangoTestView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		EB6F5BFB2A51BE990010743D = {
 			isa = PBXGroup;
 			children = (
@@ -57,7 +91,9 @@
 			children = (
 				EB6F5C072A51BE9A0010743D /* TangoTestKun2App.swift */,
 				EB6F5C092A51BE9A0010743D /* TangoTestKun2Document.swift */,
-				EB6F5C0B2A51BE9A0010743D /* ContentView.swift */,
+				EB5DAEB82A51C94400E15896 /* View */,
+				EB5DAEB02A51C60000E15896 /* Model */,
+				EB5DAEB72A51C71100E15896 /* New Group */,
 				EB6F5C0D2A51BE9F0010743D /* Assets.xcassets */,
 				EB6F5C0F2A51BE9F0010743D /* Info.plist */,
 				EB6F5C102A51BE9F0010743D /* TangoTestKun2.entitlements */,
@@ -144,9 +180,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB5DAEB22A51C64700E15896 /* TangoDataElement.swift in Sources */,
 				EB6F5C0A2A51BE9A0010743D /* TangoTestKun2Document.swift in Sources */,
 				EB6F5C082A51BE9A0010743D /* TangoTestKun2App.swift in Sources */,
+				EB5DAEB62A51C70300E15896 /* TangoParser.swift in Sources */,
+				EB5DAEAF2A51C5E200E15896 /* TangoTestView.swift in Sources */,
 				EB6F5C0C2A51BE9A0010743D /* ContentView.swift in Sources */,
+				EB5DAEB42A51C65C00E15896 /* TestType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
