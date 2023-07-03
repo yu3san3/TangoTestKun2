@@ -24,56 +24,80 @@ struct ContentView: View {
     @State private var isShowingFileEditView = false
 
     var body: some View {
-        TabView {
-            TangoTestView(
-                tangoData: $tangoFile.tangoData,
-                testType: .jp,
-                isCheckingAnswers: $isCheckingAnswers
-            )
-            .tabItem {
-                Image(systemName: "j.circle.fill")
-                Text("日本語")
-            }
-            TangoTestView(
-                tangoData: $tangoFile.tangoData,
-                testType: .en,
-                isCheckingAnswers: $isCheckingAnswers
-            )
-            .tabItem {
-                Image(systemName: "e.circle.fill")
-                Text("英語")
+        Group {
+            GeometryReader { geometry in
+                let _ = debugPrint(geometry.size)
+                TabView {
+                    TangoTestView(
+                        tangoData: $tangoFile.tangoData,
+                        testType: .jp,
+                        isCheckingAnswers: $isCheckingAnswers
+                    )
+                    .tabItem {
+                        Image(systemName: "j.circle.fill")
+                        Text("日本語")
+                    }
+                    TangoTestView(
+                        tangoData: $tangoFile.tangoData,
+                        testType: .en,
+                        isCheckingAnswers: $isCheckingAnswers
+                    )
+                    .tabItem {
+                        Image(systemName: "e.circle.fill")
+                        Text("英語")
+                    }
+                }
             }
         }
+        #if os(macOS)
+        .frame(minWidth: 320, minHeight: 280)
+        #else
+        .navigationBarTitleDisplayMode(.inline)
+        #endif
         .onAppear {
             tangoFile.rawText = tangoDocument.text
         }
-        #if os(iOS)
-        .navigationBarTitleDisplayMode(.inline)
-        #endif
         .toolbar {
-            #if os(iOS)
-            let placement = ToolbarItemPlacement.navigationBarTrailing
-            #else
-            let placement = ToolbarItemPlacement.automatic
-            #endif
-            ToolbarItemGroup(placement: placement) {
+            #if os(macOS)
+            ToolbarItem(placement: .navigation) {
+                fileEditButton
+                    .sheet(isPresented: $isShowingFileEditView) {
+                        FileEditView(rawText: $tangoFile.rawText) { text in
+                            tangoDocument.text = text
+                        }
+                    }
+            }
+            ToolbarItemGroup(placement: .automatic) {
                 shuffleButton
                 showAnswersButton
-#if os(macOS)
-                fileEditButton
-                infoButton
-#else
+            }
+            #else
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                shuffleButton
+                showAnswersButton
                 Menu {
                     fileEditButton
                     infoButton
                 } label: {
                     Label("その他", systemImage: "ellipsis.circle")
                 }
-#endif
+                .sheet(isPresented: $isShowingFileEditView) {
+                    FileEditView(rawText: $tangoFile.rawText) { text in
+                        tangoDocument.text = text
+                    }
+                }
+                .alert("単語テストくん", isPresented: $isShowingVersionAlert) {
+                    Button("OK") {}
+                } message: {
+                    Text("\(appVersion) (\(appBuildNum))")
+                }
             }
+            #endif
         }
     }
+}
 
+private extension ContentView {
     var shuffleButton: some View {
         Button(action: {
             impactOccurred()
@@ -106,11 +130,6 @@ struct ContentView: View {
         }) {
             Label("編集", systemImage: "doc.text")
         }
-        .sheet(isPresented: $isShowingFileEditView) {
-            FileEditView(rawText: $tangoFile.rawText) { text in
-                tangoDocument.text = text
-            }
-        }
     }
 
     var infoButton: some View {
@@ -118,11 +137,6 @@ struct ContentView: View {
             isShowingVersionAlert = true
         }) {
             Label("情報", systemImage: "info.circle")
-        }
-        .alert("単語テストくん", isPresented: $isShowingVersionAlert) {
-            Button("OK") {}
-        } message: {
-            Text("\(appVersion) (\(appBuildNum))")
         }
     }
 }
