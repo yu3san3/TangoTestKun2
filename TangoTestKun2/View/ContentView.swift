@@ -25,27 +25,24 @@ struct ContentView: View {
 
     var body: some View {
         Group {
-            GeometryReader { geometry in
-                let _ = debugPrint(geometry.size)
-                TabView {
-                    TangoTestView(
-                        tangoData: $tangoFile.tangoData,
-                        testType: .jp,
-                        isCheckingAnswers: $isCheckingAnswers
-                    )
-                    .tabItem {
-                        Image(systemName: "j.circle.fill")
-                        Text("日本語")
-                    }
-                    TangoTestView(
-                        tangoData: $tangoFile.tangoData,
-                        testType: .en,
-                        isCheckingAnswers: $isCheckingAnswers
-                    )
-                    .tabItem {
-                        Image(systemName: "e.circle.fill")
-                        Text("英語")
-                    }
+            TabView {
+                TangoTestView(
+                    tangoData: $tangoFile.tangoData,
+                    testType: .jp,
+                    isCheckingAnswers: $isCheckingAnswers
+                )
+                .tabItem {
+                    Image(systemName: "j.circle.fill")
+                    Text("日本語")
+                }
+                TangoTestView(
+                    tangoData: $tangoFile.tangoData,
+                    testType: .en,
+                    isCheckingAnswers: $isCheckingAnswers
+                )
+                .tabItem {
+                    Image(systemName: "e.circle.fill")
+                    Text("英語")
                 }
             }
         }
