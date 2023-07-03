@@ -57,31 +57,72 @@ struct ContentView: View {
             let placement = ToolbarItemPlacement.automatic
             #endif
             ToolbarItemGroup(placement: placement) {
+                shuffleButton
+                showAnswersButton
+#if os(macOS)
+                fileEditButton
+                infoButton
+#else
                 Menu {
-                    Button(action: {
-                        isShowingVersionAlert = true
-                    }) {
-                        Label("情報", systemImage: "info.circle")
-                    }
-                    .alert("単語テストくん", isPresented: $isShowingVersionAlert) {
-                        Button("OK") {}
-                    } message: {
-                        Text("\(appVersion) (\(appBuildNum))")
-                    }
-                    Button(action: {
-                        isShowingFileEditView = true
-                    }) {
-                        Label("編集", systemImage: "doc.text")
-                    }
-                    .sheet(isPresented: $isShowingFileEditView) {
-                        FileEditView(rawText: $tangoFile.rawText) { text in
-                            tangoDocument.text = text
-                        }
-                    }
+                    fileEditButton
+                    infoButton
                 } label: {
-                    Label("その他", systemImage: "folder")
+                    Label("その他", systemImage: "ellipsis.circle")
                 }
+#endif
             }
+        }
+    }
+
+    var shuffleButton: some View {
+        Button(action: {
+            impactOccurred()
+            tangoFile.tangoData.shuffle()
+        }) {
+            Image(systemName: "shuffle")
+        }
+    }
+
+    var showAnswersButton: some View {
+        Button(action: {
+            impactOccurred()
+            isCheckingAnswers.toggle()
+        }) {
+            Image(systemName: isCheckingAnswers ? "pencil" : "pencil.slash")
+                .foregroundColor(.red)
+        }
+    }
+
+    func impactOccurred() {
+        #if os(iOS)
+        let impactFeedback = UIImpactFeedbackGenerator(style: .light)
+        impactFeedback.impactOccurred()
+        #endif
+    }
+
+    var fileEditButton: some View {
+        Button(action: {
+            isShowingFileEditView = true
+        }) {
+            Label("編集", systemImage: "doc.text")
+        }
+        .sheet(isPresented: $isShowingFileEditView) {
+            FileEditView(rawText: $tangoFile.rawText) { text in
+                tangoDocument.text = text
+            }
+        }
+    }
+
+    var infoButton: some View {
+        Button(action: {
+            isShowingVersionAlert = true
+        }) {
+            Label("情報", systemImage: "info.circle")
+        }
+        .alert("単語テストくん", isPresented: $isShowingVersionAlert) {
+            Button("OK") {}
+        } message: {
+            Text("\(appVersion) (\(appBuildNum))")
         }
     }
 }

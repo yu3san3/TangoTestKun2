@@ -17,10 +17,7 @@ struct TangoTestView: View {
             Text("単語データが選択されていません。")
                 .foregroundColor(.gray)
         } else {
-            ZStack(alignment: .bottomTrailing) {
-                testContentList
-                bottomButton
-            }
+            testContentList
         }
     }
 }
@@ -56,55 +53,6 @@ private extension TangoTestView {
                 }
             }
         }
-    }
-
-    var bottomButton: some View {
-        HStack(spacing: 0) {
-            shuffleButton
-            Divider()
-            showAnswersButton
-        }
-        .cornerRadius(10)
-        .overlay(
-            RoundedRectangle(cornerRadius: 10.0)
-                .stroke(lineWidth: 0.5)
-                .foregroundColor(.blue)
-        )
-        .frame(height: 10)
-        .padding(.horizontal, 23)
-        .padding(.vertical, 30)
-    }
-
-    var shuffleButton: some View {
-        Button(action: {
-            impactOccurred()
-            tangoData.shuffle()
-        }) {
-            Image(systemName: "shuffle")
-                .frame(width: 13, height: 10)
-                .padding()
-//                .background(Color(UIColor.systemBackground).opacity(0.95))
-        }
-    }
-
-    var showAnswersButton: some View {
-        Button(action: {
-            impactOccurred()
-            isCheckingAnswers.toggle()
-        }) {
-            Image(systemName: isCheckingAnswers ? "pencil" : "pencil.slash")
-                .frame(width: 13, height: 10)
-                .padding()
-                .foregroundColor(.red)
-//                .background(Color(UIColor.systemBackground).opacity(0.95))
-        }
-    }
-
-    func impactOccurred() {
-        #if os(iOS)
-        let impactFeedback = UIImpactFeedbackGenerator(style: .light)
-        impactFeedback.impactOccurred()
-        #endif
     }
 }
 

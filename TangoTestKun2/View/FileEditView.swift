@@ -28,15 +28,16 @@ struct FileEditView: View {
             textEditor
                 .toolbar {
                     #if os(iOS)
+                    let placementLeading = ToolbarItemPlacement.navigationBarLeading
                     let placementTrailing = ToolbarItemPlacement.navigationBarTrailing
-                    let placementLeading = ToolbarPlacement.navigationBarLeading
                     #else
-                    let placement = ToolbarItemPlacement.automatic
+                    let placementLeading = ToolbarItemPlacement.automatic
+                    let placementTrailing = ToolbarItemPlacement.automatic
                     #endif
-                    ToolbarItem(placement: placement) {
+                    ToolbarItem(placement: placementLeading) {
                         cancelButton
                     }
-                    ToolbarItem(placement: placement) {
+                    ToolbarItem(placement: placementTrailing) {
                         saveButton
                     }
                 }
@@ -46,6 +47,9 @@ struct FileEditView: View {
                 #endif
                 .navigationBarBackButtonHidden()
         }
+        #if os(macOS)
+        .frame(minWidth: 300, minHeight: 300)
+        #endif
     }
 }
 
