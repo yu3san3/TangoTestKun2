@@ -4,6 +4,7 @@
 //
 //  Created by 丹羽雄一朗 on 2023/07/02.
 //
+// 2023/07/04 Alpha 1.0.0
 
 import SwiftUI
 

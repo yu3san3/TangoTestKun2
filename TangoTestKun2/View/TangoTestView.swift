@@ -30,7 +30,7 @@ private extension TangoTestView {
                     makeListItem(index: index)
                 }
             }
-            .listSectionSeparator(.hidden) //上下のリスト区切り線を消す
+            .listSectionSeparator(.hidden) //リストの一番上と下の区切り線を消す
         }
         .listStyle(.plain)
     }
