@@ -48,7 +48,6 @@ struct ContentView: View {
             tangoFile.rawText = tangoDocument.text
         }
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
