@@ -27,15 +27,23 @@ struct FileEditView: View {
         NavigationStack {
             textEditor
                 .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
+                    #if os(iOS)
+                    let placementTrailing = ToolbarItemPlacement.navigationBarTrailing
+                    let placementLeading = ToolbarPlacement.navigationBarLeading
+                    #else
+                    let placement = ToolbarItemPlacement.automatic
+                    #endif
+                    ToolbarItem(placement: placement) {
                         cancelButton
                     }
-                    ToolbarItem(placement: .navigationBarTrailing) {
+                    ToolbarItem(placement: placement) {
                         saveButton
                     }
                 }
                 .navigationTitle("ファイルを編集")
+                #if os(iOS)
                 .navigationBarTitleDisplayMode(.inline)
+                #endif
                 .navigationBarBackButtonHidden()
         }
     }

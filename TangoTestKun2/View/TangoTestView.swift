@@ -77,29 +77,34 @@ private extension TangoTestView {
 
     var shuffleButton: some View {
         Button(action: {
-            let impactFeedback = UIImpactFeedbackGenerator(style: .rigid)
-            impactFeedback.impactOccurred()
+            impactOccurred()
             tangoData.shuffle()
         }) {
             Image(systemName: "shuffle")
                 .frame(width: 13, height: 10)
                 .padding()
-                .background(Color(UIColor.systemBackground).opacity(0.95))
+//                .background(Color(UIColor.systemBackground).opacity(0.95))
         }
     }
 
     var showAnswersButton: some View {
         Button(action: {
-            let impactFeedback = UIImpactFeedbackGenerator(style: .light)
-            impactFeedback.impactOccurred()
+            impactOccurred()
             isCheckingAnswers.toggle()
         }) {
             Image(systemName: isCheckingAnswers ? "pencil" : "pencil.slash")
                 .frame(width: 13, height: 10)
                 .padding()
                 .foregroundColor(.red)
-                .background(Color(UIColor.systemBackground).opacity(0.95))
+//                .background(Color(UIColor.systemBackground).opacity(0.95))
         }
+    }
+
+    func impactOccurred() {
+        #if os(iOS)
+        let impactFeedback = UIImpactFeedbackGenerator(style: .light)
+        impactFeedback.impactOccurred()
+        #endif
     }
 }
 

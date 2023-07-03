@@ -47,30 +47,39 @@ struct ContentView: View {
         .onAppear {
             tangoFile.rawText = tangoDocument.text
         }
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: {
-                    isShowingVersionAlert = true
-                }) {
-                    Label("情報", systemImage: "info.circle")
-                }
-                .alert("単語テストくん", isPresented: $isShowingVersionAlert) {
-                    Button("OK") {}
-                } message: {
-                    Text("\(appVersion) (\(appBuildNum))")
-                }
-            }
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: {
-                    isShowingFileEditView = true
-                }) {
-                    Label("編集", systemImage: "doc.text")
-                }
-                .sheet(isPresented: $isShowingFileEditView) {
-                    FileEditView(rawText: $tangoFile.rawText) { text in
-                        tangoDocument.text = text
+            #if os(iOS)
+            let placement = ToolbarItemPlacement.navigationBarTrailing
+            #else
+            let placement = ToolbarItemPlacement.automatic
+            #endif
+            ToolbarItemGroup(placement: placement) {
+                Menu {
+                    Button(action: {
+                        isShowingVersionAlert = true
+                    }) {
+                        Label("情報", systemImage: "info.circle")
                     }
+                    .alert("単語テストくん", isPresented: $isShowingVersionAlert) {
+                        Button("OK") {}
+                    } message: {
+                        Text("\(appVersion) (\(appBuildNum))")
+                    }
+                    Button(action: {
+                        isShowingFileEditView = true
+                    }) {
+                        Label("編集", systemImage: "doc.text")
+                    }
+                    .sheet(isPresented: $isShowingFileEditView) {
+                        FileEditView(rawText: $tangoFile.rawText) { text in
+                            tangoDocument.text = text
+                        }
+                    }
+                } label: {
+                    Label("その他", systemImage: "folder")
                 }
             }
         }
