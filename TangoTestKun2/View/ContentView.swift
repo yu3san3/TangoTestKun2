@@ -47,8 +47,8 @@ struct ContentView: View {
         .onAppear {
             tangoFile.rawText = tangoDocument.text
         }
-        .navigationTitle("単語テストくん")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {

@@ -34,7 +34,7 @@ struct FileEditView: View {
                         saveButton
                     }
                 }
-                .navigationTitle("単語テストくん！")
+                .navigationTitle("ファイルを編集")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarBackButtonHidden()
         }
