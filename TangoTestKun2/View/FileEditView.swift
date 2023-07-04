@@ -9,8 +9,8 @@ import SwiftUI
 
 struct FileEditView: View {
     @Binding var rawText: String
-    @State private var textEditorContent: String
     var onCompletion: (String) -> Void
+    @State private var textEditorContent: String
 
     @State private var isShowingDismissAlert = false
     @FocusState private var isEditing: Bool
@@ -80,7 +80,7 @@ private extension FileEditView {
 
     var cancelButton: some View {
         Button(action: {
-            if !hasChanges() {
+            if !hasChanges() { //何も変更がなかった場合は素直にdismiss
                 dismiss()
                 return
             }

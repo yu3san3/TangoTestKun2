@@ -12,6 +12,7 @@ struct TangoTestKun2App: App {
     var body: some Scene {
         DocumentGroup(newDocument: TangoTestKun2Document()) { file in
             ContentView(tangoDocument: file.$document)
+                .frame(minWidth: 320,idealWidth: 380, minHeight: 280, idealHeight: 500)
         }
     }
 }

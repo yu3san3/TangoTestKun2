@@ -21,6 +21,8 @@ class TangoFile: ObservableObject {
 }
 
 extension TangoFile {
+    static let newFileRawText = "りんご=apple"
+
     static let mockTangoData = TangoParser.parse(mockRawText)
     static let mockRawText = """
     起動する、開始する=launch
@@ -34,5 +36,4 @@ extension TangoFile {
     整列、調整=alignment
     半径=radius
     """.trimmingCharacters(in: .whitespaces) //両端の空白を削除
-    static let newFileRawText = "りんご=apple"
 }

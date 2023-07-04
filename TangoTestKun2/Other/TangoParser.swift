@@ -9,9 +9,7 @@ import Foundation
 
 class TangoParser {
     static func parse(_ text: String) -> [TangoDataElement] {
-
         var result: [TangoDataElement] = []
-
         for lineRow in text.components(separatedBy: .newlines) { //textを1行づつ処理
             let line: String = lineRow.trimmingCharacters(in: .whitespaces) //行の端にある空白を削除
             if line == "" {

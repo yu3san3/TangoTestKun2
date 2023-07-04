@@ -12,7 +12,6 @@ let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! S
 let appBuildNum = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
 
 struct ContentView: View {
-
     @StateObject var tangoFile = TangoFile()
     @Binding var tangoDocument: TangoTestKun2Document {
         didSet {
@@ -56,12 +55,11 @@ struct ContentView: View {
                 testType = .en
             }
         }
-        #if os(macOS)
-        .frame(minWidth: 320, minHeight: 280)
-        #else
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         #endif
         .onAppear {
+            //初期状態を設定
             tangoFile.rawText = tangoDocument.text
         }
         .toolbar {
@@ -106,7 +104,6 @@ struct ContentView: View {
 
 private extension ContentView {
     func setKeyboardShortcut(shortcut: KeyboardShortcut, action: @escaping () -> Void ) -> some View {
-        // Button for handling keyboard shortcut
         Button(action: {
             action()
         }) {}
@@ -118,7 +115,9 @@ private extension ContentView {
 
     var shuffleButton: some View {
         Button(action: {
-            impactOccurred()
+            #if os(iOS)
+            impactOccurred(style: .rigid)
+            #endif
             tangoFile.tangoData.shuffle()
         }) {
             Image(systemName: "shuffle")
@@ -128,7 +127,9 @@ private extension ContentView {
 
     var showAnswersButton: some View {
         Button(action: {
-            impactOccurred()
+            #if os(iOS)
+            impactOccurred(style: .light)
+            #endif
             isCheckingAnswers.toggle()
         }) {
             Image(systemName: isCheckingAnswers ? "pencil" : "pencil.slash")
@@ -137,12 +138,12 @@ private extension ContentView {
         .keyboardShortcut("a", modifiers: [])
     }
 
-    func impactOccurred() {
-        #if os(iOS)
-        let impactFeedback = UIImpactFeedbackGenerator(style: .light)
+    #if os(iOS)
+    func impactOccurred(style: UIImpactFeedbackGenerator.FeedbackStyle) {
+        let impactFeedback = UIImpactFeedbackGenerator(style: style)
         impactFeedback.impactOccurred()
-        #endif
     }
+    #endif
 
     var fileEditButton: some View {
         Button(action: {
