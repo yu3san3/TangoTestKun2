@@ -20,13 +20,14 @@ struct ContentView: View {
         }
     }
 
+    @State private var testType: TestType = .jp
     @State private var isShowingVersionAlert = false
     @State private var isCheckingAnswers = false
     @State private var isShowingFileEditView = false
 
     var body: some View {
-        Group {
-            TabView {
+        ZStack {
+            TabView(selection: $testType) {
                 TangoTestView(
                     tangoData: $tangoFile.tangoData,
                     testType: .jp,
@@ -36,6 +37,7 @@ struct ContentView: View {
                     Image(systemName: "j.circle.fill")
                     Text("日本語")
                 }
+                .tag(TestType.jp)
                 TangoTestView(
                     tangoData: $tangoFile.tangoData,
                     testType: .en,
@@ -45,6 +47,13 @@ struct ContentView: View {
                     Image(systemName: "e.circle.fill")
                     Text("英語")
                 }
+                .tag(TestType.en)
+            }
+            setKeyboardShortcut(shortcut: KeyboardShortcut("1", modifiers: .command)) {
+                testType = .jp
+            }
+            setKeyboardShortcut(shortcut: KeyboardShortcut("2", modifiers: .command)) {
+                testType = .en
             }
         }
         #if os(macOS)
@@ -96,6 +105,17 @@ struct ContentView: View {
 }
 
 private extension ContentView {
+    func setKeyboardShortcut(shortcut: KeyboardShortcut, action: @escaping () -> Void ) -> some View {
+        // Button for handling keyboard shortcut
+        Button(action: {
+            action()
+        }) {}
+            .padding(0)
+            .opacity(0)
+            .frame(width: 0, height: 0)
+            .keyboardShortcut(shortcut)
+    }
+
     var shuffleButton: some View {
         Button(action: {
             impactOccurred()
@@ -103,6 +123,7 @@ private extension ContentView {
         }) {
             Image(systemName: "shuffle")
         }
+        .keyboardShortcut("s", modifiers: [])
     }
 
     var showAnswersButton: some View {
@@ -113,6 +134,7 @@ private extension ContentView {
             Image(systemName: isCheckingAnswers ? "pencil" : "pencil.slash")
                 .foregroundColor(.red)
         }
+        .keyboardShortcut("a", modifiers: [])
     }
 
     func impactOccurred() {
@@ -128,6 +150,7 @@ private extension ContentView {
         }) {
             Label("編集", systemImage: "doc.text")
         }
+        .keyboardShortcut("e", modifiers: .command)
     }
 
     var infoButton: some View {
