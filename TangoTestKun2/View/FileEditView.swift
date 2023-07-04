@@ -64,6 +64,9 @@ private extension FileEditView {
 
     var textEditor: some View {
         TextEditor(text: $textEditorContent)
+            #if os(macOS)
+            .padding(.top, 5)
+            #endif
             .focused($isEditing)
             .toolbar {
                 ToolbarItemGroup(placement: .keyboard) {
