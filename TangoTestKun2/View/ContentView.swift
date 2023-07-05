@@ -19,19 +19,17 @@ struct ContentView: View {
         }
     }
     @ObservedObject var tangoFile: TangoFile
-    @Binding var isCheckingAnswers: Bool
-    @Binding var isShowingFileEditView: Bool
-    @Binding var testType: TestType
+    @ObservedObject var appState: AppState
 
     @State private var isShowingVersionAlert = false
 
     var body: some View {
         ZStack {
-            TabView(selection: $testType) {
+            TabView(selection: $appState.testType) {
                 TangoTestView(
                     tangoData: $tangoFile.tangoData,
                     testType: .jp,
-                    isCheckingAnswers: $isCheckingAnswers
+                    isCheckingAnswers: $appState.isCheckingAnswers
                 )
                 .tabItem {
                     Image(systemName: "j.circle.fill")
@@ -41,7 +39,7 @@ struct ContentView: View {
                 TangoTestView(
                     tangoData: $tangoFile.tangoData,
                     testType: .en,
-                    isCheckingAnswers: $isCheckingAnswers
+                    isCheckingAnswers: $appState.isCheckingAnswers
                 )
                 .tabItem {
                     Image(systemName: "e.circle.fill")
@@ -61,7 +59,7 @@ struct ContentView: View {
             #if os(macOS)
             ToolbarItem(placement: .navigation) {
                 fileEditButton
-                    .sheet(isPresented: $isShowingFileEditView) {
+                    .sheet(isPresented: $appState.isShowingFileEditView) {
                         FileEditView(rawText: $tangoFile.rawText) { text in
                             tangoDocument.text = text
                         }
@@ -114,9 +112,9 @@ private extension ContentView {
             #if os(iOS)
             impactOccurred(style: .light)
             #endif
-            isCheckingAnswers.toggle()
+            appState.isCheckingAnswers.toggle()
         }) {
-            Image(systemName: isCheckingAnswers ? "pencil" : "pencil.slash")
+            Image(systemName: appState.isCheckingAnswers ? "pencil" : "pencil.slash")
                 .foregroundColor(.red)
         }
     }
@@ -130,7 +128,7 @@ private extension ContentView {
 
     var fileEditButton: some View {
         Button(action: {
-            isShowingFileEditView = true
+            appState.isShowingFileEditView = true
         }) {
             Label("編集", systemImage: "doc.text")
         }
@@ -150,9 +148,7 @@ struct ContentView_Previews: PreviewProvider {
         ContentView(
             tangoDocument: .constant( TangoTestKun2Document() ),
             tangoFile: TangoFile(),
-            isCheckingAnswers: .constant(false),
-            isShowingFileEditView: .constant(false),
-            testType: .constant(.jp)
+            appState: AppState()
         )
     }
 }

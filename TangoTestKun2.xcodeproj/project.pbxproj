@@ -16,6 +16,7 @@
 		EB6F5C0C2A51BE9A0010743D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F5C0B2A51BE9A0010743D /* ContentView.swift */; };
 		EB6F5C0E2A51BE9F0010743D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB6F5C0D2A51BE9F0010743D /* Assets.xcassets */; };
 		EB6F5C132A51BE9F0010743D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB6F5C122A51BE9F0010743D /* Preview Assets.xcassets */; };
+		EBCA39152A55C1EF00CD0EB4 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA39142A55C1EF00CD0EB4 /* AppState.swift */; };
 		EBDFE1F12A51CCB700159040 /* FileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDFE1F02A51CCB700159040 /* FileEditView.swift */; };
 		EBDFE1F52A51FDCA00159040 /* TangoFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDFE1F42A51FDCA00159040 /* TangoFile.swift */; };
 /* End PBXBuildFile section */
@@ -33,6 +34,7 @@
 		EB6F5C0F2A51BE9F0010743D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB6F5C102A51BE9F0010743D /* TangoTestKun2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TangoTestKun2.entitlements; sourceTree = "<group>"; };
 		EB6F5C122A51BE9F0010743D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EBCA39142A55C1EF00CD0EB4 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		EBDFE1F02A51CCB700159040 /* FileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEditView.swift; sourceTree = "<group>"; };
 		EBDFE1F42A51FDCA00159040 /* TangoFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangoFile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,6 +55,7 @@
 			children = (
 				EBDFE1F42A51FDCA00159040 /* TangoFile.swift */,
 				EB5DAEB12A51C64600E15896 /* TangoDataElement.swift */,
+				EBCA39142A55C1EF00CD0EB4 /* AppState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB5DAEB22A51C64700E15896 /* TangoDataElement.swift in Sources */,
+				EBCA39152A55C1EF00CD0EB4 /* AppState.swift in Sources */,
 				EB6F5C0A2A51BE9A0010743D /* TangoTestKun2Document.swift in Sources */,
 				EB6F5C082A51BE9A0010743D /* TangoTestKun2App.swift in Sources */,
 				EB5DAEB62A51C70300E15896 /* TangoParser.swift in Sources */,
