@@ -13,17 +13,17 @@ let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! S
 let appBuildNum = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
 
 struct ContentView: View {
-    @StateObject var tangoFile = TangoFile()
     @Binding var tangoDocument: TangoTestKun2Document {
         didSet {
             tangoFile.rawText = tangoDocument.text
         }
     }
+    @ObservedObject var tangoFile: TangoFile
+    @Binding var isCheckingAnswers: Bool
+    @Binding var isShowingFileEditView: Bool
+    @Binding var testType: TestType
 
-    @State private var testType: TestType = .jp
     @State private var isShowingVersionAlert = false
-    @State private var isCheckingAnswers = false
-    @State private var isShowingFileEditView = false
 
     var body: some View {
         ZStack {
@@ -48,12 +48,6 @@ struct ContentView: View {
                     Text("英語")
                 }
                 .tag(TestType.en)
-            }
-            setKeyboardShortcut(shortcut: KeyboardShortcut("1", modifiers: .command)) {
-                testType = .jp
-            }
-            setKeyboardShortcut(shortcut: KeyboardShortcut("2", modifiers: .command)) {
-                testType = .en
             }
         }
         #if os(iOS)
@@ -104,16 +98,6 @@ struct ContentView: View {
 }
 
 private extension ContentView {
-    func setKeyboardShortcut(shortcut: KeyboardShortcut, action: @escaping () -> Void ) -> some View {
-        Button(action: {
-            action()
-        }) {}
-            .padding(0)
-            .opacity(0)
-            .frame(width: 0, height: 0)
-            .keyboardShortcut(shortcut)
-    }
-
     var shuffleButton: some View {
         Button(action: {
             #if os(iOS)
@@ -123,7 +107,6 @@ private extension ContentView {
         }) {
             Image(systemName: "shuffle")
         }
-        .keyboardShortcut("s", modifiers: [])
     }
 
     var showAnswersButton: some View {
@@ -136,7 +119,6 @@ private extension ContentView {
             Image(systemName: isCheckingAnswers ? "pencil" : "pencil.slash")
                 .foregroundColor(.red)
         }
-        .keyboardShortcut("a", modifiers: [])
     }
 
     #if os(iOS)
@@ -152,7 +134,6 @@ private extension ContentView {
         }) {
             Label("編集", systemImage: "doc.text")
         }
-        .keyboardShortcut("e", modifiers: .command)
     }
 
     var infoButton: some View {
@@ -166,6 +147,12 @@ private extension ContentView {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(tangoDocument: .constant(TangoTestKun2Document()))
+        ContentView(
+            tangoDocument: .constant( TangoTestKun2Document() ),
+            tangoFile: TangoFile(),
+            isCheckingAnswers: .constant(false),
+            isShowingFileEditView: .constant(false),
+            testType: .constant(.jp)
+        )
     }
 }

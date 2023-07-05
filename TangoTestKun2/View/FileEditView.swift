@@ -120,7 +120,7 @@ private extension FileEditView {
         }) {
             Text("保存")
         }
-        .keyboardShortcut(.return, modifiers: .command)
+        .keyboardShortcut("s", modifiers: .command)
     }
 }
 
