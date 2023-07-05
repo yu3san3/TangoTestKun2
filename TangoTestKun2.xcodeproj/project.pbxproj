@@ -55,7 +55,7 @@
 			children = (
 				EBDFE1F42A51FDCA00159040 /* TangoFile.swift */,
 				EB5DAEB12A51C64600E15896 /* TangoDataElement.swift */,
-				EBCA39142A55C1EF00CD0EB4 /* AppState.swift */,
+				EB5DAEB32A51C65C00E15896 /* TestType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -63,7 +63,7 @@
 		EB5DAEB72A51C71100E15896 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				EB5DAEB32A51C65C00E15896 /* TestType.swift */,
+				EBCA39142A55C1EF00CD0EB4 /* AppState.swift */,
 				EB5DAEB52A51C70300E15896 /* TangoParser.swift */,
 			);
 			path = Other;
