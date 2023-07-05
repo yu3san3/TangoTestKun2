@@ -30,12 +30,12 @@ struct TangoTestKun2App: App {
                     appState.isCheckingAnswers.toggle()
                 }
                 .keyboardShortcut("a", modifiers: [])
-                Button("日本語→英語") {
-                    appState.testType = .jp
-                }
-                .keyboardShortcut("1", modifiers: .command)
                 Button("英語→日本語") {
                     appState.testType = .en
+                }
+                .keyboardShortcut("1", modifiers: .command)
+                Button("日本語→英語") {
+                    appState.testType = .jp
                 }
                 .keyboardShortcut("2", modifiers: .command)
             }

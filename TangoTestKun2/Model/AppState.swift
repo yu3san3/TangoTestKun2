@@ -10,5 +10,5 @@ import Foundation
 class AppState: ObservableObject {
     @Published var isCheckingAnswers = false
     @Published var isShowingFileEditView = false
-    @Published var testType: TestType = .jp
+    @Published var testType: TestType = .en
 }

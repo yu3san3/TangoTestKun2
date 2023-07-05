@@ -8,6 +8,6 @@
 import Foundation
 
 struct TangoDataElement: Hashable {
-    var jp: String
     var en: String
+    var jp: String
 }

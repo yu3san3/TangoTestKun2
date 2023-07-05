@@ -22,22 +22,22 @@ class TangoFile: ObservableObject {
 
 extension TangoFile {
     static let placeholderText = """
-    りんご=apple
-    本=book
-    猫=cat
+    apple=りんご
+    book=本
+    cat=猫
     """
 
     static let mockTangoData = TangoParser.parse(mockRawText)
     static let mockRawText = """
-    起動する、開始する=launch
-    意図=intent
-    適格である=eligible
-    束=bundle
-    浮く=float
-    委任する、代表=delegate
-    制限、制約=restriction
-    登録する、記録=register
-    整列、調整=alignment
-    半径=radius
+    launch=起動する、開始する
+    intent=意図
+    eligible=適格である
+    bundle=束
+    float=浮く
+    delegate=委任する、代表
+    restriction=制限、制約
+    register=登録する、記録
+    alignment=整列、調整
+    radius=半径
     """.trimmingCharacters(in: .whitespaces) //両端の空白を削除
 }

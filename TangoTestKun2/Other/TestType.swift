@@ -8,6 +8,6 @@
 import Foundation
 
 enum TestType {
-    case jp
     case en
+    case jp
 }

@@ -16,9 +16,9 @@ class TangoParser {
                 continue
             } else {
                 var lineArray: [String] = line.components(separatedBy: "=")
-                let jp: String = lineArray.removeFirst() //左側
-                let en: String = lineArray.joined(separator: "=") //右側
-                result.append(TangoDataElement(jp: jp, en: en))
+                let en: String = lineArray.removeFirst() //左側
+                let jp: String = lineArray.joined(separator: "=") //右側
+                result.append(TangoDataElement(en: en, jp: jp))
             }
         }
         return result

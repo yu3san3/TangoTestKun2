@@ -24,29 +24,27 @@ struct ContentView: View {
     @State private var isShowingVersionAlert = false
 
     var body: some View {
-        ZStack {
-            TabView(selection: $appState.testType) {
-                TangoTestView(
-                    tangoData: $tangoFile.tangoData,
-                    testType: .jp,
-                    isCheckingAnswers: $appState.isCheckingAnswers
-                )
-                .tabItem {
-                    Image(systemName: "j.circle.fill")
-                    Text("日本語")
-                }
-                .tag(TestType.jp)
-                TangoTestView(
-                    tangoData: $tangoFile.tangoData,
-                    testType: .en,
-                    isCheckingAnswers: $appState.isCheckingAnswers
-                )
-                .tabItem {
-                    Image(systemName: "e.circle.fill")
-                    Text("英語")
-                }
-                .tag(TestType.en)
+        TabView(selection: $appState.testType) {
+            TangoTestView(
+                tangoData: $tangoFile.tangoData,
+                testType: .en,
+                isCheckingAnswers: $appState.isCheckingAnswers
+            )
+            .tabItem {
+                Image(systemName: "e.circle.fill")
+                Text("英語")
             }
+            .tag(TestType.en)
+            TangoTestView(
+                tangoData: $tangoFile.tangoData,
+                testType: .jp,
+                isCheckingAnswers: $appState.isCheckingAnswers
+            )
+            .tabItem {
+                Image(systemName: "j.circle.fill")
+                Text("日本語")
+            }
+            .tag(TestType.jp)
         }
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
@@ -79,7 +77,7 @@ struct ContentView: View {
                 } label: {
                     Label("その他", systemImage: "ellipsis.circle")
                 }
-                .sheet(isPresented: $isShowingFileEditView) {
+                .sheet(isPresented: $appState.isShowingFileEditView) {
                     FileEditView(rawText: $tangoFile.rawText) { text in
                         tangoDocument.text = text
                     }
