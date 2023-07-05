@@ -30,7 +30,12 @@ private extension TangoTestView {
         List {
             Section {
                 ForEach(0..<tangoData.endIndex, id: \.self) { index in
-                    makeListItem(index: index)
+                    VStack(alignment: .leading) {
+                        makeListItem(index: index)
+                        #if os(macOS)
+                        Divider()
+                        #endif
+                    }
                 }
             }
             .listSectionSeparator(.hidden) //リストの一番上と下の区切り線を消す

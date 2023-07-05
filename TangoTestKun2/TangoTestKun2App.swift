@@ -30,6 +30,7 @@ struct TangoTestKun2App: App {
                     appState.isCheckingAnswers.toggle()
                 }
                 .keyboardShortcut("a", modifiers: [])
+                Divider()
                 Button("英語→日本語") {
                     appState.testType = .en
                 }
@@ -38,8 +39,10 @@ struct TangoTestKun2App: App {
                     appState.testType = .jp
                 }
                 .keyboardShortcut("2", modifiers: .command)
+                Divider()
             }
             CommandGroup(after: .pasteboard) {
+                Divider()
                 Button("単語ファイルを編集") {
                     appState.isShowingFileEditView = true
                 }
