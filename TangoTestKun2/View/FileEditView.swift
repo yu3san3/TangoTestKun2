@@ -63,22 +63,29 @@ struct FileEditView: View {
 private extension FileEditView {
 
     var textEditor: some View {
-        TextEditor(text: $textEditorContent)
-            #if os(macOS)
-            .padding(.top, 5)
-            #endif
-            .focused($isEditing)
-            .toolbar {
-                ToolbarItemGroup(placement: .keyboard) {
-                    Spacer()
-                    Button("完了") {
-                        isEditing = false
+        ZStack {
+            if textEditorContent.isEmpty { //placeholder
+                TextEditor(text: .constant(TangoFile.placeholderText))
+                    .disabled(true)
+            }
+            TextEditor(text: $textEditorContent)
+                .focused($isEditing)
+                .opacity(textEditorContent.isEmpty ? 0.7 : 1)
+                .toolbar {
+                    ToolbarItemGroup(placement: .keyboard) {
+                        Spacer()
+                        Button("完了") {
+                            isEditing = false
+                        }
                     }
                 }
-            }
-            .onAppear {
-                isEditing = true
-            }
+                .onAppear {
+                    isEditing = true
+                }
+        }
+        #if os(macOS)
+        .padding(.top, 5)
+        #endif
     }
 
     var cancelButton: some View {

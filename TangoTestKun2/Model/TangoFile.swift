@@ -21,7 +21,11 @@ class TangoFile: ObservableObject {
 }
 
 extension TangoFile {
-    static let newFileRawText = "りんご=apple"
+    static let placeholderText = """
+    りんご=apple
+    本=book
+    猫=cat
+    """
 
     static let mockTangoData = TangoParser.parse(mockRawText)
     static let mockRawText = """

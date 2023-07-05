@@ -14,8 +14,11 @@ struct TangoTestView: View {
 
     var body: some View {
         if tangoData.isEmpty {
-            Text("単語データが選択されていません。")
-                .foregroundColor(.gray)
+            VStack {
+                Text("単語データが空です。")
+                Text("編集ボタンからデータを入力してください。")
+            }
+            .foregroundColor(.gray)
         } else {
             testContentList
         }

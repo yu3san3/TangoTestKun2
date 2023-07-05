@@ -11,7 +11,7 @@ import UniformTypeIdentifiers
 struct TangoTestKun2Document: FileDocument {
     var text: String
 
-    init(text: String = TangoFile.newFileRawText) {
+    init(text: String = "") {
         self.text = text
     }
 
