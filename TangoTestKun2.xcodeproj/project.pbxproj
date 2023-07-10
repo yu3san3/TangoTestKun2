@@ -26,7 +26,7 @@
 		EB5DAEB12A51C64600E15896 /* TangoDataElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangoDataElement.swift; sourceTree = "<group>"; };
 		EB5DAEB32A51C65C00E15896 /* TestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestType.swift; sourceTree = "<group>"; };
 		EB5DAEB52A51C70300E15896 /* TangoParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangoParser.swift; sourceTree = "<group>"; };
-		EB6F5C042A51BE9A0010743D /* TangoTestKun2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TangoTestKun2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB6F5C042A51BE9A0010743D /* 単語テストくん.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "単語テストくん.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB6F5C072A51BE9A0010743D /* TangoTestKun2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangoTestKun2App.swift; sourceTree = "<group>"; };
 		EB6F5C092A51BE9A0010743D /* TangoTestKun2Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TangoTestKun2Document.swift; sourceTree = "<group>"; };
 		EB6F5C0B2A51BE9A0010743D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 		EB6F5C052A51BE9A0010743D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EB6F5C042A51BE9A0010743D /* TangoTestKun2.app */,
+				EB6F5C042A51BE9A0010743D /* 単語テストくん.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -122,9 +122,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EB6F5C032A51BE9A0010743D /* TangoTestKun2 */ = {
+		EB6F5C032A51BE9A0010743D /* 単語テストくん */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EB6F5C162A51BE9F0010743D /* Build configuration list for PBXNativeTarget "TangoTestKun2" */;
+			buildConfigurationList = EB6F5C162A51BE9F0010743D /* Build configuration list for PBXNativeTarget "単語テストくん" */;
 			buildPhases = (
 				EB6F5C002A51BE9A0010743D /* Sources */,
 				EB6F5C012A51BE9A0010743D /* Frameworks */,
@@ -134,9 +134,9 @@
 			);
 			dependencies = (
 			);
-			name = TangoTestKun2;
+			name = "単語テストくん";
 			productName = TangoTestKun2;
-			productReference = EB6F5C042A51BE9A0010743D /* TangoTestKun2.app */;
+			productReference = EB6F5C042A51BE9A0010743D /* 単語テストくん.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -167,7 +167,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EB6F5C032A51BE9A0010743D /* TangoTestKun2 */,
+				EB6F5C032A51BE9A0010743D /* 単語テストくん */,
 			);
 		};
 /* End PBXProject section */
@@ -416,7 +416,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EB6F5C162A51BE9F0010743D /* Build configuration list for PBXNativeTarget "TangoTestKun2" */ = {
+		EB6F5C162A51BE9F0010743D /* Build configuration list for PBXNativeTarget "単語テストくん" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EB6F5C172A51BE9F0010743D /* Debug */,
